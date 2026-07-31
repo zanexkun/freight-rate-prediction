@@ -4,13 +4,12 @@ Predicts the posted rate of a freight load from its route, distance, equipment t
 
 ## Setup
 
-Put the data files in a `data/` folder:
+Put the data files in the project folder next to `train.py`:
 
 ```
-data/
-├── train-test.csv
-├── validation.csv
-└── december-chart-inputs.csv
+train-test.csv
+validation.csv
+december-chart-inputs.csv
 ```
 
 Then install what it needs:
