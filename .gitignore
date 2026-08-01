@@ -1,7 +1,6 @@
 train-test.csv
 validation.csv
 december-chart-inputs.csv
-validation_predictions.csv
 scorer_results/
 score.py
 candidate_december.png
