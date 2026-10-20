@@ -1,5 +1,7 @@
 # freight rate prediction
 
+result: the final model is off by about 4.3% per load (102 dollars on an average load of 2,392 dollars), after fixing several data quality problems: negative weights, missing values, target leakage and unexplained outlier loads.
+
 predicts the posted rate of a freight load from its route, distance, equipment, weight and date. built for the spotter ml engineer assessment.
 
 this is version 2, rebuilt from scratch in october. the first version from august is still in the commit history.
@@ -36,6 +38,7 @@ train.py prints the test scores, then writes `validation_predictions.csv` and fi
 
 * rates are seasonal (11% swing, peak in june) and depend a little on the weekday (2.6%, wednesday and thursday highest)
 * about 670 loads (1.4%) have rates far above or below normal and nothing explains them (not distance, equipment, weight, date or route). removed from training only and kept in the test
+* equipment changes the rate: reefer costs about 13% and flatbed about 8% more per mile than dry van (median 2.31 and 2.22 vs 2.05 dollars per mile)
 * 292 negative weights in training and 145 in validation. they closely mirror the positive weights so it is a sign error, fixed with abs()
 * 300 missing weights in training and 165 in validation, filled with the training median
 * weights are clipped at 5,000 and 47,500
