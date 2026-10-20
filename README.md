@@ -24,13 +24,13 @@ train.py prints the test scores, then writes `validation_predictions.csv` and fi
 
 ## what i found in the data
 
-* 292 negative weights in training and 145 in validation. they mirror the positive weights exactly so it is a sign error, fixed with abs()
+* rates are seasonal (11% swing, peak in june) and depend a little on the weekday (2.6%, wednesday and thursday highest)
+* about 670 loads (1.4%) have rates far above or below normal and nothing explains them (not distance, equipment, weight, date or route). removed from training only and kept in the test
+* 292 negative weights in training and 145 in validation. they closely mirror the positive weights so it is a sign error, fixed with abs()
 * 300 missing weights in training and 165 in validation, filled with the training median
 * weights are clipped at 5,000 and 47,500
 * quote_signal is target leakage: its scatter plot against rate per mile is an X shape (two exact lines plus noise), so it was dropped
 * market_index shows no signal and is missing from the december file, so it was dropped
-* about 670 loads (1.4%) have rates far above or below normal and nothing explains them (not distance, equipment, weight, date or route). removed from training only and kept in the test
-* rates are seasonal (11% swing, peak in june) and depend a little on the weekday (2.6%, wednesday and thursday highest)
 
 ## split
 
