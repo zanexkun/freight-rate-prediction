@@ -4,7 +4,7 @@ result: the final model is off by about 4.3% per load (102 dollars on an average
 
 predicts the posted rate of a freight load from its route, distance, equipment, weight and date. built for the spotter ml engineer assessment.
 
-this is version 2, rebuilt from scratch in october. the first version from august is still in the commit history.
+this is version 2, rebuilt from scratch in october. the first version is still in the commit history.
 
 what changed from v1:
 
