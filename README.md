@@ -62,6 +62,14 @@ the lane feature is the typical rate per mile of each pickup and delivery pair, 
 
 ![december chart](scorer_results/candidate_december.png)
 
+## business view
+
+* the final model is off by about 102 dollars per load on average. the average load in the test period costs about 2,392 dollars, so that is roughly 4.3% per load
+* the rate is driven mostly by distance, then by equipment (reefer about 13% and flatbed about 8% more per mile than dry van), season (11% swing) and weekday (2.6%)
+* about 1.4% of loads are priced far above or below normal with nothing in the data explaining them. in real freight these could be urgent or expedited spot loads (expensive), backhauls where a truck accepts a low rate to get home, or entry mistakes (cheap). a spot or contract flag and the booking lead time would probably explain many of them
+* what would improve the model most: data from previous years to learn december and holidays, diesel prices, a spot or contract flag, and booking lead time
+* how it could be used: as a starting quote for a load, with unusual lanes and holiday periods flagged for a person to check
+
 ## limitation
 
 the training data ends in october so the model never saw december or any holiday. the december chart shows a weekly pattern only, christmas looks like a normal thursday. data from previous years would fix that.
