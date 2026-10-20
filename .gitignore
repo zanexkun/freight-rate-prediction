@@ -1,9 +1,6 @@
-train-test.csv
-validation.csv
-december-chart-inputs.csv
-scorer_results/
+data/
 score.py
-candidate_december.png
+.idea/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
