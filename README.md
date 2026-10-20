@@ -37,13 +37,21 @@ train.py prints the test scores, then writes `validation_predictions.csv` and fi
 ## what i found in the data
 
 * rates are seasonal (11% swing, peak in june) and depend a little on the weekday (2.6%, wednesday and thursday highest)
-* about 670 loads (1.4%) have rates far above or below normal and nothing explains them (not distance, equipment, weight, date or route). removed from training only and kept in the test
 * equipment changes the rate: reefer costs about 13% and flatbed about 8% more per mile than dry van (median 2.31 and 2.22 vs 2.05 dollars per mile)
+* about 670 loads (1.4%) have rates far above or below normal and nothing explains them (not distance, equipment, weight, date or route). removed from training only and kept in the test
 * 292 negative weights in training and 145 in validation. they closely mirror the positive weights so it is a sign error, fixed with abs()
 * 300 missing weights in training and 165 in validation, filled with the training median
 * weights are clipped at 5,000 and 47,500
 * quote_signal is target leakage: its scatter plot against rate per mile is an X shape (two exact lines plus noise), so it was dropped
 * market_index shows no signal and is missing from the december file, so it was dropped
+
+## business view
+
+* the final model is off by about 102 dollars per load on average. the average load in the test period costs about 2,392 dollars, so that is roughly 4.3% per load
+* the rate is driven mostly by distance, then by equipment, season (11% swing) and weekday (2.6%)
+* about 1.4% of loads are priced far above or below normal with nothing in the data explaining them. in real freight these could be urgent or expedited spot loads (expensive), backhauls where a truck accepts a low rate to get home, or entry mistakes (cheap). a spot or contract flag and the booking lead time would probably explain many of them
+* what would improve the model most: data from previous years to learn december and holidays, diesel prices, a spot or contract flag, and booking lead time
+* how it could be used: as a starting quote for a load, with unusual lanes and holiday periods flagged for a person to check
 
 ## split
 
@@ -64,14 +72,6 @@ the lane feature is the typical rate per mile of each pickup and delivery pair, 
 ## december chart
 
 ![december chart](scorer_results/candidate_december.png)
-
-## business view
-
-* the final model is off by about 102 dollars per load on average. the average load in the test period costs about 2,392 dollars, so that is roughly 4.3% per load
-* the rate is driven mostly by distance, then by equipment (reefer about 13% and flatbed about 8% more per mile than dry van), season (11% swing) and weekday (2.6%)
-* about 1.4% of loads are priced far above or below normal with nothing in the data explaining them. in real freight these could be urgent or expedited spot loads (expensive), backhauls where a truck accepts a low rate to get home, or entry mistakes (cheap). a spot or contract flag and the booking lead time would probably explain many of them
-* what would improve the model most: data from previous years to learn december and holidays, diesel prices, a spot or contract flag, and booking lead time
-* how it could be used: as a starting quote for a load, with unusual lanes and holiday periods flagged for a person to check
 
 ## limitation
 
