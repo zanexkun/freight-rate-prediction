@@ -2,6 +2,16 @@
 
 predicts the posted rate of a freight load from its route, distance, equipment, weight and date. built for the spotter ml engineer assessment.
 
+this is version 2, rebuilt from scratch in october. the first version from august is still in the commit history.
+
+what changed from v1:
+
+* found and fixed negative weights (a sign error) that v1 missed
+* found that quote_signal is target leakage (v1 only dropped it because it was missing from the december file)
+* the final model is retrained on all data through october (v1 never trained on september and october)
+* added a leakage safe lane feature and averaged random forest with lightgbm
+* test MAE went from 106.92 to 102.45
+
 ## how to run
 
 put the assessment files in `data/` then:
